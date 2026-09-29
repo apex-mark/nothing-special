@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday, Elma</title>
+<meta name="description" content="A little cinematic surprise for Elma.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Poppins:wght@300;400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+<canvas id="fx-canvas" aria-hidden="true"></canvas>
+
+<button id="music-toggle" type="button" aria-pressed="false" aria-label="Play background music">
+  <svg class="icon-note" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+    <path fill="currentColor" d="M9 18V5l11-2v13"></path>
+    <circle cx="6.5" cy="18" r="2.5" fill="currentColor"></circle>
+    <circle cx="17.5" cy="16" r="2.5" fill="currentColor"></circle>
+  </svg>
+  <span class="mute-slash" aria-hidden="true"></span>
+</button>
+
+<main id="app">
+
+  <!-- ================= OPENING ================= -->
+  <section class="scene" id="scene-opening">
+    <div class="scene-inner center-stage">
+      <p class="opening-eyebrow fade-in-el">A little something for</p>
+      <h1 class="opening-name fade-in-el">Elma</h1>
+      <button id="begin-btn" class="btn btn-gold fade-in-el" type="button">Begin</button>
+      <p class="opening-hint fade-in-el">best with sound on 🎧</p>
+    </div>
+  </section>
+
+  <!-- ================= SCENE 1 — 3·2·1 BIRTHDAY ================= -->
+  <section class="scene" id="scene-1">
+    <div class="scene1-lines" aria-hidden="true"></div>
+    <div class="scene-inner center-stage">
+
+      <div class="countdown-wrap" id="countdown-wrap">
+        <span class="countdown-number" id="countdown-number">3</span>
+      </div>
+
+      <div class="hero-reveal" id="hero-reveal">
+        <p class="hero-eyebrow">Happy Birthday</p>
+        <h1 class="hero-name">Elma</h1>
+      </div>
+
+      <div class="cake-stage" id="cake-stage">
+        <svg class="cake-svg" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="plateGlow" cx="50%" cy="40%" r="60%">
+              <stop offset="0%" stop-color="#3a2f10"></stop>
+              <stop offset="100%" stop-color="#0b0a0e" stop-opacity="0"></stop>
+            </radialGradient>
+            <linearGradient id="chocBottom" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#6b4022"></stop>
+              <stop offset="55%" stop-color="#472a15"></stop>
+              <stop offset="100%" stop-color="#2c1a0d"></stop>
+            </linearGradient>
+            <linearGradient id="chocTop" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#7a4c28"></stop>
+              <stop offset="55%" stop-color="#4f3018"></stop>
+              <stop offset="100%" stop-color="#301c0e"></stop>
+            </linearGradient>
+            <linearGradient id="goldDrip" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#f6d78b"></stop>
+              <stop offset="55%" stop-color="#d4af37"></stop>
+              <stop offset="100%" stop-color="#9c7a1e"></stop>
+            </linearGradient>
+            <linearGradient id="roseRibbon" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ffc2d1"></stop>
+              <stop offset="100%" stop-color="#e0607e"></stop>
+            </linearGradient>
+            <radialGradient id="roseCenter" cx="50%" cy="35%" r="65%">
+              <stop offset="0%" stop-color="#fff3df"></stop>
+              <stop offset="100%" stop-color="#f6d78b"></stop>
+            </radialGradient>
+            <linearGradient id="candleGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#f6d78b"></stop>
+              <stop offset="50%" stop-color="#ffffff"></stop>
+              <stop offset="100%" stop-color="#d4af37"></stop>
+            </linearGradient>
+            <radialGradient id="flameOuter" cx="50%" cy="70%" r="60%">
+              <stop offset="0%" stop-color="#fff3c4"></stop>
+              <stop offset="40%" stop-color="#ffb347"></stop>
+              <stop offset="100%" stop-color="#ff7a3d" stop-opacity="0"></stop>
+            </radialGradient>
+            <filter id="flameGlow" x="-100%" y="-100%" width="300%" height="300%">
+              <feGaussianBlur stdDeviation="3.2" result="b"></feGaussianBlur>
+              <feMerge>
+                <feMergeNode in="b"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+              </feMerge>
+            </filter>
+          </defs>
+
+          <ellipse cx="160" cy="196" rx="150" ry="20" fill="url(#plateGlow)"></ellipse>
+          <ellipse cx="160" cy="192" rx="124" ry="10" fill="#000" opacity="0.35"></ellipse>
+          <ellipse cx="160" cy="188" rx="122" ry="8" fill="#d4af37" opacity="0.5"></ellipse>
+
+          <rect x="52" y="118" width="216" height="72" rx="14" fill="url(#chocBottom)"></rect>
+          <path d="M52,118 L268,118 L268,124 C264.4,131.0 258.9,135.7 256.0,135.7 C253.1,135.7 247.6,131.0 244.0,124.0 C240.4,138.7 234.9,148.4 232.0,148.4 C229.1,148.4 223.6,138.7 220.0,124.0 C216.4,130.0 210.9,134.0 208.0,134.0 C205.1,134.0 199.6,130.0 196.0,124.0 C192.4,130.0 186.9,134.0 184.0,134.0 C181.1,134.0 175.6,130.0 172.0,124.0 C168.4,135.9 162.9,143.8 160.0,143.8 C157.1,143.8 151.6,135.9 148.0,124.0 C144.4,135.6 138.9,143.3 136.0,143.3 C133.1,143.3 127.6,135.6 124.0,124.0 C120.4,132.5 114.9,138.1 112.0,138.1 C109.1,138.1 103.6,132.5 100.0,124.0 C96.4,134.8 90.9,142.0 88.0,142.0 C85.1,142.0 79.6,134.8 76.0,124.0 C72.4,130.7 66.9,135.2 64.0,135.2 C61.1,135.2 55.6,130.7 52.0,124.0 Z" fill="url(#goldDrip)" opacity="0.92"></path>
+
+          <rect x="52" y="160" width="216" height="8" fill="url(#roseRibbon)" opacity="0.9"></rect>
+          <g class="ribbon-bow" transform="translate(160,164)">
+            <path d="M0,0 C-4,-9 -17,-9 -17,0 C-17,7 -6,5.5 0,0 Z" fill="url(#roseRibbon)"></path>
+            <path d="M0,0 C4,-9 17,-9 17,0 C17,7 6,5.5 0,0 Z" fill="url(#roseRibbon)"></path>
+            <rect x="-4" y="-4" width="8" height="8" rx="2" fill="#fff3df"></rect>
+          </g>
+
+          <rect x="100" y="60" width="120" height="64" rx="10" fill="url(#chocTop)"></rect>
+          <path d="M100,60 L220,60 L220,66 C217.4,78.0 213.5,86.1 211.4,86.1 C209.4,86.1 205.4,78.0 202.9,66.0 C200.3,83.4 196.3,94.9 194.3,94.9 C192.2,94.9 188.3,83.4 185.7,66.0 C183.1,82.3 179.2,93.2 177.1,93.2 C175.1,93.2 171.1,82.3 168.6,66.0 C166.0,81.7 162.1,92.2 160.0,92.2 C157.9,92.2 154.0,81.7 151.4,66.0 C148.9,87.8 144.9,102.3 142.9,102.3 C140.8,102.3 136.9,87.8 134.3,66.0 C131.7,83.0 127.8,94.3 125.7,94.3 C123.7,94.3 119.7,83.0 117.1,66.0 C114.6,81.6 110.6,92.0 108.6,92.0 C106.5,92.0 102.6,81.6 100.0,66.0 Z" fill="#241207"></path>
+
+          <g class="frosting-dots">
+            <circle cx="106" cy="60" r="5" fill="#fff3df"></circle>
+            <circle cx="122" cy="58" r="5" fill="#fff3df"></circle>
+            <circle cx="138" cy="60" r="5" fill="#fff3df"></circle>
+            <circle cx="160" cy="57" r="5.5" fill="#fff3df"></circle>
+            <circle cx="182" cy="60" r="5" fill="#fff3df"></circle>
+            <circle cx="198" cy="58" r="5" fill="#fff3df"></circle>
+            <circle cx="214" cy="60" r="5" fill="#fff3df"></circle>
+          </g>
+
+          <g class="sprinkles">
+            <circle cx="130" cy="80" r="2.4" fill="#ffb3c6"></circle>
+            <circle cx="150" cy="95" r="2" fill="#f6d78b"></circle>
+            <circle cx="175" cy="82" r="2.2" fill="#ffffff"></circle>
+            <circle cx="190" cy="100" r="2" fill="#ff8fa3"></circle>
+            <circle cx="205" cy="85" r="2.3" fill="#f6d78b"></circle>
+          </g>
+
+          <g class="sugar-roses">
+            <g transform="translate(128,50) scale(0.85)">
+              <ellipse cx="0" cy="-5" rx="4" ry="6" fill="#ffc2d1" transform="rotate(0)"></ellipse>
+              <ellipse cx="0" cy="-5" rx="4" ry="6" fill="#ff8fa3" transform="rotate(72)"></ellipse>
+              <ellipse cx="0" cy="-5" rx="4" ry="6" fill="#ffc2d1" transform="rotate(144)"></ellipse>
+              <ellipse cx="0" cy="-5" rx="4" ry="6" fill="#ff8fa3" transform="rotate(216)"></ellipse>
+              <ellipse cx="0" cy="-5" rx="4" ry="6" fill="#ffc2d1" transform="rotate(288)"></ellipse>
+              <circle r="2.6" fill="url(#roseCenter)"></circle>
+            </g>
+            <g transform="translate(192,50) scale(0.85)">
+              <ellipse cx="0" cy="-5" rx="4" ry="6" fill="#ff8fa3" transform="rotate(0)"></ellipse>
+              <ellipse cx="0" cy="-5" rx="4" ry="6" fill="#ffc2d1" transform="rotate(72)"></ellipse>
+              <ellipse cx="0" cy="-5" rx="4" ry="6" fill="#ff8fa3" transform="rotate(144)"></ellipse>
+              <ellipse cx="0" cy="-5" rx="4" ry="6" fill="#ffc2d1" transform="rotate(216)"></ellipse>
+              <ellipse cx="0" cy="-5" rx="4" ry="6" fill="#ff8fa3" transform="rotate(288)"></ellipse>
+              <circle r="2.6" fill="url(#roseCenter)"></circle>
+            </g>
+            <g transform="translate(110,62) scale(0.6)">
+              <ellipse cx="0" cy="-5" rx="4" ry="6" fill="#ffc2d1" transform="rotate(0)"></ellipse>
+              <ellipse cx="0" cy="-5" rx="4" ry="6" fill="#ff8fa3" transform="rotate(72)"></ellipse>
+              <ellipse cx="0" cy="-5" rx="4" ry="6" fill="#ffc2d1" transform="rotate(144)"></ellipse>
+              <ellipse cx="0" cy="-5" rx="4" ry="6" fill="#ff8fa3" transform="rotate(216)"></ellipse>
+              <ellipse cx="0" cy="-5" rx="4" ry="6" fill="#ffc2d1" transform="rotate(288)"></ellipse>
+              <circle r="2.6" fill="url(#roseCenter)"></circle>
+            </g>
+            <g transform="translate(210,62) scale(0.6)">
+              <ellipse cx="0" cy="-5" rx="4" ry="6" fill="#ff8fa3" transform="rotate(0)"></ellipse>
+              <ellipse cx="0" cy="-5" rx="4" ry="6" fill="#ffc2d1" transform="rotate(72)"></ellipse>
+              <ellipse cx="0" cy="-5" rx="4" ry="6" fill="#ff8fa3" transform="rotate(144)"></ellipse>
+              <ellipse cx="0" cy="-5" rx="4" ry="6" fill="#ffc2d1" transform="rotate(216)"></ellipse>
+              <ellipse cx="0" cy="-5" rx="4" ry="6" fill="#ff8fa3" transform="rotate(288)"></ellipse>
+              <circle r="2.6" fill="url(#roseCenter)"></circle>
+            </g>
+          </g>
+
+          <g id="candle-flame" class="flame-group" tabindex="0" role="button" aria-label="Blow out the candle">
+            <rect x="155" y="30" width="10" height="32" rx="2" fill="url(#candleGrad)"></rect>
+            <rect x="155" y="42" width="10" height="4" fill="#ff4d6d" opacity="0.85"></rect>
+            <g class="flame" filter="url(#flameGlow)">
+              <ellipse cx="160" cy="18" rx="10" ry="14" fill="url(#flameOuter)"></ellipse>
+              <ellipse cx="160" cy="21" rx="4" ry="7" fill="#fff9e8"></ellipse>
+            </g>
+            <circle class="smoke-puff" cx="160" cy="16" r="2" fill="#cfcfd6" opacity="0"></circle>
+            <circle cx="160" cy="18" r="22" fill="transparent"></circle>
+          </g>
+        </svg>
+        <p class="candle-caption" id="candle-caption">Make a wish, Elma 🕯️</p>
+      </div>
+
+      <button id="scene1-continue-btn" class="btn btn-outline appear" type="button">Continue</button>
+    </div>
+  </section>
+
+  <!-- ================= SCENE 2 — SPRING / FUN ================= -->
+  <section class="scene" id="scene-2">
+    <div class="spring-sky"></div>
+    <div class="spring-sun"></div>
+    <div class="birds-layer" id="birds-layer-2" aria-hidden="true"></div>
+    <div class="spring-hills"></div>
+
+    <svg class="plants plants-left" viewBox="0 0 140 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M20,320 C10,240 30,180 18,100" stroke="#2f6b3d" stroke-width="6" fill="none" stroke-linecap="round"></path>
+      <g class="leaf leaf-a"><ellipse cx="18" cy="150" rx="26" ry="12" fill="#5cb270" transform="rotate(-30 18 150)"></ellipse></g>
+      <g class="leaf leaf-b"><ellipse cx="14" cy="200" rx="30" ry="13" fill="#3f8a4f" transform="rotate(20 14 200)"></ellipse></g>
+      <g class="leaf leaf-c"><ellipse cx="22" cy="250" rx="28" ry="12" fill="#5cb270" transform="rotate(-15 22 250)"></ellipse></g>
+      <circle class="bud" cx="18" cy="98" r="10" fill="#ffc2d1"></circle>
+      <circle class="bud" cx="18" cy="98" r="5" fill="#ff8fa3"></circle>
+    </svg>
+
+    <svg class="plants plants-right" viewBox="0 0 140 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M120,320 C132,230 108,170 122,90" stroke="#2f6b3d" stroke-width="6" fill="none" stroke-linecap="round"></path>
+      <g class="leaf leaf-a"><ellipse cx="122" cy="140" rx="28" ry="13" fill="#3f8a4f" transform="rotate(28 122 140)"></ellipse></g>
+      <g class="leaf leaf-b"><ellipse cx="128" cy="195" rx="30" ry="13" fill="#5cb270" transform="rotate(-22 128 195)"></ellipse></g>
+      <g class="leaf leaf-c"><ellipse cx="118" cy="245" rx="26" ry="12" fill="#3f8a4f" transform="rotate(16 118 245)"></ellipse></g>
+      <circle class="bud" cx="122" cy="88" r="10" fill="#ffe1ea"></circle>
+      <circle class="bud" cx="122" cy="88" r="5" fill="#ffb3c6"></circle>
+    </svg>
+
+    <div class="grass-strip" aria-hidden="true"></div>
+
+    <div class="scene-inner center-stage scene2-inner">
+      <p class="reveal-line scene2-line">Hmm... look who's a year older today 👀</p>
+      <p class="reveal-line scene2-line">Don't worry — still the same Angry Bird we all love 🕊️ </p>
+      <p class="reveal-line scene2-line scene2-line-small">(just a little wiser now. maybe.) 😌</p>
+      <button id="scene2-continue-btn" class="btn btn-outline appear" type="button">Keep Going</button>
+    </div>
+  </section>
+
+  <!-- ================= SCENE 3a — YES / NO ================= -->
+  <section class="scene" id="scene-yesno">
+    <div class="balloon-layer" id="balloon-layer-yesno" aria-hidden="true"></div>
+    <div class="scene-inner center-stage">
+      <div class="yesno-card">
+        <p class="yesno-question">Do you want to see something special for you?</p>
+        <div class="yesno-buttons">
+          <button id="yes-btn" class="btn btn-gold" type="button">Yes 💛</button>
+          <button id="no-btn" class="btn btn-outline" type="button">No</button>
+        </div>
+        <p class="no-reaction" id="no-reaction-text" aria-live="polite"></p>
+        <p class="yesno-nudge" id="yesno-nudge">(just say yes 😉)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SCENE 6 — NO REACTION (optional branch) ================= -->
+  <section class="scene" id="scene-6">
+    <div class="ember-glow" aria-hidden="true"></div>
+    <div class="scene-inner center-stage">
+      <svg class="scene6-bird" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g class="bird-shake">
+          <path class="wing wing-left" d="M60,85 C30,75 15,90 10,75 C25,70 45,68 60,78 Z" fill="#c23a4d"></path>
+          <path class="wing wing-right" d="M100,85 C130,75 145,90 150,75 C135,70 115,68 100,78 Z" fill="#c23a4d"></path>
+          <ellipse cx="80" cy="95" rx="42" ry="36" fill="#ff4d6d"></ellipse>
+          <circle cx="80" cy="55" r="30" fill="#ff4d6d"></circle>
+          <path class="brow brow-left" d="M56,44 L70,50" stroke="#3a0d16" stroke-width="4" stroke-linecap="round"></path>
+          <path class="brow brow-right" d="M104,44 L90,50" stroke="#3a0d16" stroke-width="4" stroke-linecap="round"></path>
+          <circle cx="68" cy="56" r="6" fill="#1a0509"></circle>
+          <circle cx="92" cy="56" r="6" fill="#1a0509"></circle>
+          <path d="M72,66 L88,66 L80,78 Z" fill="#f6d78b"></path>
+          <path d="M64,28 L70,10 M78,24 L80,6 M92,28 L86,10" stroke="#c23a4d" stroke-width="5" stroke-linecap="round"></path>
+          <path class="steam steam-1" d="M30,40 C26,32 34,28 30,20" stroke="#ffd6de" stroke-width="2.4" fill="none" stroke-linecap="round"></path>
+          <path class="steam steam-2" d="M130,40 C134,32 126,28 130,20" stroke="#ffd6de" stroke-width="2.4" fill="none" stroke-linecap="round"></path>
+        </g>
+      </svg>
+      <p class="reveal-line scene6-line scene6-line-big">OKAY. THAT'S IT. 😤</p>
+      <p class="reveal-line scene6-line">Someone's being a real Angry Bird right now 🦅💢</p>
+      <p class="reveal-line scene6-line scene6-line-small">Let's go back and try that Yes button, shall we?</p>
+      <button id="goback-btn" class="btn btn-outline appear" type="button">Go Back</button>
+    </div>
+  </section>
+
+  <!-- ================= SCENE 3b — THREE GIFTS ================= -->
+  <section class="scene" id="scene-gifts">
+    <div class="balloon-layer" id="balloon-layer-gifts" aria-hidden="true"></div>
+    <div class="scene-inner center-stage">
+      <p class="gifts-heading reveal-line">Pick a gift... any gift 🎁</p>
+
+      <div class="gifts-row">
+        <div class="gift-box gift-left" data-gift="left" tabindex="0" role="button" aria-label="Open the left gift">
+          <span class="gift-tag">?</span>
+          <div class="gift-box-inner">
+            <div class="gift-envelope"><span class="envelope-flap"></span></div>
+            <div class="gift-lid"><span class="gift-ribbon-v"></span><span class="gift-bow"></span></div>
+            <div class="gift-body"><span class="gift-ribbon-v"></span><span class="gift-ribbon-h"></span></div>
+          </div>
+        </div>
+
+        <div class="gift-box gift-center" data-gift="center" tabindex="0" role="button" aria-label="Open the center gift">
+          <span class="gift-tag">?</span>
+          <div class="gift-box-inner">
+            <div class="gift-envelope"><span class="envelope-flap"></span></div>
+            <div class="gift-lid"><span class="gift-ribbon-v"></span><span class="gift-bow"></span></div>
+            <div class="gift-body"><span class="gift-ribbon-v"></span><span class="gift-ribbon-h"></span></div>
+          </div>
+        </div>
+
+        <div class="gift-box gift-right" data-gift="right" tabindex="0" role="button" aria-label="Open the right gift">
+          <span class="gift-tag">?</span>
+          <div class="gift-box-inner">
+            <div class="gift-envelope"><span class="envelope-flap"></span></div>
+            <div class="gift-lid"><span class="gift-ribbon-v"></span><span class="gift-bow"></span></div>
+            <div class="gift-body"><span class="gift-ribbon-v"></span><span class="gift-ribbon-h"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <button id="gifts-next-btn" class="btn btn-gold appear" type="button">Next</button>
+    </div>
+
+    <div class="message-panel" id="message-panel" aria-hidden="true">
+      <div class="message-panel-card">
+        <button id="message-close-btn" class="message-close" type="button" aria-label="Close">✕</button>
+      <div class="message-panel-photo" id="message-panel-photo">
+  <img src="set%20image/centerpic.jpeg"
+       alt=""
+       class="real-photo"
+       style="width: 110%; max-width: none; height: 300px; object-fit: cover; margin-left: -5%;"
+       onload="this.classList.add('loaded'); this.nextElementSibling.style.display='none';"
+       onerror="this.style.display='none';">
+          <div class="photo-placeholder">
+            <svg viewBox="0 0 48 48" width="34" height="34" aria-hidden="true"><path fill="currentColor" d="M9 12h4l2-3h14l2 3h4a3 3 0 013 3v20a3 3 0 01-3 3H9a3 3 0 01-3-3V15a3 3 0 013-3z" opacity=".5"></path><circle cx="24" cy="25" r="7" fill="currentColor"></circle></svg>
+            <span>drop centerpic.jpeg into a "set image" folder next to index.html</span>
+          </div>
+        </div>
+        <h3 class="message-panel-title" id="message-panel-title"></h3>
+        <div class="message-panel-body" id="message-panel-body"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SCENE 4 — NEXT EXCITEMENT ================= -->
+  <section class="scene" id="scene-4">
+    <div class="crystal-bg"></div>
+    <div class="birds-layer" id="birds-layer-4" aria-hidden="true"></div>
+    <div class="curtain-strips side-left" aria-hidden="true">
+      <span class="curtain-strip tone-crystal"></span><span class="curtain-strip tone-crystal"></span><span class="curtain-strip tone-crystal"></span><span class="curtain-strip tone-crystal"></span><span class="curtain-strip tone-crystal"></span>
+    </div>
+    <div class="curtain-strips side-right" aria-hidden="true">
+      <span class="curtain-strip tone-crystal"></span><span class="curtain-strip tone-crystal"></span><span class="curtain-strip tone-crystal"></span><span class="curtain-strip tone-crystal"></span><span class="curtain-strip tone-crystal"></span>
+    </div>
+    <div class="scene-inner center-stage">
+      <p class="reveal-line scene4-line scene4-line-big">One more thing before tonight ends... ✨</p>
+      <p class="reveal-line scene4-line">Something special is still waiting for you.</p>
+      <p class="reveal-line scene4-line scene4-line-finale">One Last Special Thing&hellip;</p>
+      <button id="scene4-continue-btn" class="btn btn-outline btn-crystal appear" type="button">Continue</button>
+    </div>
+  </section>
+
+  <!-- ================= SCENE 5 — CURTAIN -> FINAL GIFT REVEAL ================= -->
+  <section class="scene" id="scene-5">
+    <div class="room-bg" aria-hidden="true"></div>
+    <div class="room-floor" aria-hidden="true"></div>
+
+    <div class="curtain-strips side-left" aria-hidden="true">
+      <span class="curtain-strip tone-gold"></span><span class="curtain-strip tone-gold"></span><span class="curtain-strip tone-gold"></span><span class="curtain-strip tone-gold"></span><span class="curtain-strip tone-gold"></span>
+    </div>
+    <div class="curtain-strips side-right" aria-hidden="true">
+      <span class="curtain-strip tone-gold"></span><span class="curtain-strip tone-gold"></span><span class="curtain-strip tone-gold"></span><span class="curtain-strip tone-gold"></span><span class="curtain-strip tone-gold"></span>
+    </div>
+
+    <div class="scene-inner center-stage">
+      <div class="final-gift-frame">
+       <img src="set%20image/lastgift.jpg" alt="A gift for Elma" class="final-gift-photo"
+     style="width: 112%; max-width: none; margin-left: -6%; height: 100%; object-fit: cover;"
+     onload="this.classList.add('loaded'); this.nextElementSibling.style.display='none';"
+     onerror="this.style.display='none';">
+        <div class="final-gift-placeholder">
+          <svg viewBox="0 0 48 48" width="30" height="30" aria-hidden="true"><path fill="currentColor" d="M9 12h4l2-3h14l2 3h4a3 3 0 013 3v20a3 3 0 01-3 3H9a3 3 0 01-3-3V15a3 3 0 013-3z" opacity=".5"></path><circle cx="24" cy="25" r="7" fill="currentColor"></circle></svg>
+          <span>drop lastgift.jpg into the "set image" folder</span>
+        </div>
+      </div>
+      <div class="final-gift-shadow" aria-hidden="true"></div>
+
+      <p class="final-caption appear" id="scene5-caption">It's all for you, Elma. Smile, And Enjoy Yawarrr😉💖✨</p>
+      <button id="scene5-continue-btn" class="btn btn-outline appear" type="button">Continue</button>
+    </div>
+  </section>
+
+  <!-- ================= FINAL ENDING ================= -->
+  <section class="scene" id="scene-final">
+    <div class="scene-inner center-stage">
+      <div class="final-card">
+        <p class="final-line">My dearest Elma,</p>
+        <p class="final-line">Another year around the sun, and somehow you just keep getting better. I hope today reminded you how loved you are.</p>
+        <p class="final-line">We're not what we used to be, but some part of what we had still means something to me — and I don't think that ever fully goes away.</p>
+        <p class="final-line">Thank you for the friendship we had, and for everything I learned from knowing you. This whole thing — every scene, every button, every small detail — was made with real care, because you deserve that.</p>
+        <p class="final-line final-signoff">Happy Birthday, Angry Bird.🕊️💛</p>
+      </div>
+      <button id="replay-btn" class="btn btn-gold appear" type="button">Replay</button>
+    </div>
+  </section>
+
+</main>
+
+<script src="particles.js"></script>
+<script src="animations.js"></script>
+<script src="music.js"></script>
+<script src="gifts.js"></script>
+<script src="scenes.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
